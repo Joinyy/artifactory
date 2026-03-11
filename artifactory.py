@@ -587,6 +587,13 @@ class _ArtifactoryFlavour(object if IS_PYTHON_3_12_OR_NEWER else pathlib._Flavou
         """
         return path
 
+    def isabs(self, path):
+        """
+        Returns True if the path is absolute. For Artifactory paths, this
+        means checking the URL scheme.
+        """
+        return urllib.parse.urlparse(str(path)).scheme != ""
+
     def normcase(self, path):
         return path
 
